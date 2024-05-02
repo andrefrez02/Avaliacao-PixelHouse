@@ -1,0 +1,57 @@
+﻿@using CaixaComanda.Classes;
+
+@{
+    ViewData["Title"] = "Cadastre-se";
+}
+
+@using (Html.BeginForm("Cadastrar", "Login", FormMethod.Post, new { @class = "form", id = "cadastrar" }))
+{
+    <header class="form-header">
+        <h2>Bem-vindo!</h2>
+
+        <span class="span-link">
+            Já possui uma conta? @Html.ActionLink("Faça seu login clicando aqui.", "Login", "Login", null, new { @class = "lnk-cadastrar" })
+        </span>
+    </header>
+
+    <div class="form__grupo">
+        <label for="txtNome">
+            Nome:
+        </label>
+        <input placeholder="Digite aqui seu Nome..." type="text" name="txtNome" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtDataNascimento">
+            Data de Nascimento:
+        </label>
+        <input value="@DateTime.Today.Date.ToString(@"yyyy-MM-dd")" type="date" name="txtDataNascimento" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtEmail">
+            E-mail:
+        </label>
+        <input placeholder="Digite aqui seu e-mail..." type="email" name="txtEmail" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtSenha">
+            Senha:
+        </label>
+        <input placeholder="Digite aqui sua senha..." type="password" name="txtSenha" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtConfirmarSenha">
+            Confirmar a Senha:
+        </label>
+        <input placeholder="Digite sua senha novamente..." type="password" name="txtConfirmarSenha" required />
+    </div>
+
+    <div class="form__grupo">
+        <button class="btn-submit" type="submit" name="btnSubmit">
+            Cadastrar
+        </button>
+    </div>
+}

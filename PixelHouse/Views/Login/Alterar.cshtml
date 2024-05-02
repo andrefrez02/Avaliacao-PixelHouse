@@ -1,0 +1,67 @@
+﻿@using CaixaComanda.Classes;
+
+@{
+    ViewData["Title"] = "Alterar Cadastro";
+
+    Usuario usuario = new Usuario();
+
+    if (TempData["LoginId"] != null)
+    {
+        if (TempData["LoginId"].ToString() != "error")
+        {
+            usuario = new DataModel().PesquisarUsuario(TempData["LoginId"].ToString());
+        }
+    }
+}
+
+@using (Html.BeginForm("Alterar", "Login", FormMethod.Post, new { @class = "form", id = "alterar" }))
+{
+    <header class="form-header">
+        <h2>Alterar dados do cadastro</h2>
+    </header>
+
+    <div class="form__grupo">
+        <label for="txtNome">
+            Nome:
+        </label>
+        <input type="text" name="txtNome" value="@usuario.Nome" />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtDataNascimento">
+            Data de Nascimento:
+        </label>
+        <input value="@usuario.DataNascimento.ToString(@"yyyy-MM-dd")" type="date" name="txtDataNascimento" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtEmail">
+            E-mail:
+        </label>
+        <input type="email" name="txtEmail" value="@usuario.Email" disabled draggable="false" />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtSenha">
+            Senha Atual:
+        </label>
+        <input placeholder="Digite aqui sua senha..." type="password" name="txtSenha" value="" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtNovaSenha">
+            Senha Nova:
+        </label>
+        <input placeholder="Digite novamente sua senha..." type="password" name="txtNovaSenha" value="" required />
+    </div>
+
+    <div class="form__grupo">
+        <button class="btn-submit" type="submit" name="btnSubmit">
+            Enviar
+        </button>
+
+        <span class="span-link">
+            Não precisa mais dos nossos serviços? @Html.ActionLink("Deletar conta", "Deletar", "Login", null, new { @class = "lnk-deletar" })
+        </span>
+    </div>
+}

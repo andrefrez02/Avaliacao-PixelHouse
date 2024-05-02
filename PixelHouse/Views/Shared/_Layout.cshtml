@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PixelHouse</title>
+    <link rel="stylesheet" href="~/sass/main.css" asp-append-version="true" />
+    <link rel="icon" type="image/x-icon" href="~/Imagens/favicon.png">
+    <script src="~/Javascript/main.js" defer></script>
+</head>
+<body class="main">
+    <div class="main-decor">&nbsp;</div>
+    <main role="main" class="main-conteudo">
+        <a class="btn-voltar" href="~/">
+            @Html.Raw(File.ReadAllText("wwwroot/Icones/home.svg"))
+        </a>
+        @RenderBody()
+    </main>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

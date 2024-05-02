@@ -1,0 +1,67 @@
+﻿@using CaixaComanda.Classes;
+
+@{
+    ViewData["Title"] = "Login";
+
+    DataModel dados = new DataModel();
+
+    List<Usuario> listagem = dados.ListarUsuarios();
+
+    Usuario usuario = new Usuario();
+
+    if (TempData["LoginId"] != null)
+    {
+        if (TempData["LoginId"].ToString() != "error")
+        {
+            usuario = new DataModel().PesquisarUsuario(TempData["LoginId"].ToString());
+        }
+    }
+}
+
+@if (usuario.Id != null)
+{
+    <header class="main-header">
+        <h2>Usuario logado: <span>@usuario.Email</span></h2>
+    </header>
+
+    <nav class="main-nav">
+        @Html.ActionLink("Alterar dados", "Alterar", "Login", null, new { @class = "btn-alterar" })
+
+        @Html.ActionLink("Deslogar", "Deslogar", "Login", null, new { @class = "btn-deslogar" })
+    </nav>
+}
+else
+{
+    <nav class="main-nav">
+        @Html.ActionLink("Fazer Login", "Login", "Login", null, new { @class = "btn-login" })
+
+        @Html.ActionLink("Cadastrar", "Cadastrar", "Login", null, new { @class = "btn-cadastrar" })
+    </nav>
+}
+
+@if (listagem != null)
+{
+    <div class="tabela">
+        <header>
+            <h1>Listagem de usuários</h1>
+        </header>
+
+        @foreach (Usuario item in listagem)
+        {
+            <div class="tabela-item">
+                <h2>
+                    <b>Nome: </b><span>@item.Nome</span>
+                </h2>
+                <div>
+                    <b>Id: </b><span>@item.Id</span>
+                </div>
+                <div>
+                    <b>Data de Nascimento: </b><span>@item.DataNascimento.ToString(@"dd/MM/yyyy")</span>
+                </div>
+                <div>
+                    <b>E-mail: </b><span>@item.Email</span>
+                </div>
+            </div>
+        }
+    </div>
+}

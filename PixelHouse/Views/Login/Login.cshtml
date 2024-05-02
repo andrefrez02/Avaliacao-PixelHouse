@@ -1,0 +1,36 @@
+﻿@using CaixaComanda.Classes;
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form", id = "login" }))
+{
+    <header class="form-header">
+        <h2>Bem-vindo!</h2>
+
+        <span class="span-link">
+            Ainda não possui uma conta? @Html.ActionLink("Faça seu cadastro clicando aqui.", "Cadastrar", "Login", null, new { @class = "lnk-cadastrar" })
+        </span>
+    </header>
+
+    <div class="form__grupo">
+        <label for="txtEmail">
+            E-mail:
+        </label>
+        <input placeholder="Digite aqui seu e-mail..." type="email" name="txtEmail" required />
+    </div>
+
+    <div class="form__grupo">
+        <label for="txtSenha">
+            Senha:
+        </label>
+        <input placeholder="Digite aqui sua senha..." type="password" name="txtSenha" required />
+    </div>
+
+    <div class="form__grupo">
+        <button class="btn-submit" type="submit">
+            Entrar
+        </button>
+    </div>
+}
